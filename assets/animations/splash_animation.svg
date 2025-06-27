@@ -1,0 +1,23 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .link { animation: float 3s ease-in-out infinite; }
+    .circle { animation: pulse 3s ease-in-out infinite; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes pulse {
+      0%, 100% { r: 80; opacity: 0.2; }
+      50% { r: 85; opacity: 0.3; }
+    }
+  </style>
+  
+  <circle class="circle" cx="100" cy="100" r="80" fill="#6C63FF" opacity="0.2"/>
+  
+  <g class="link" fill="#6C63FF">
+    <path d="M100 60c-22.1 0-40 17.9-40 40s17.9 40 40 40 40-17.9 40-40-17.9-40-40-40zm0 70c-16.5 0-30-13.5-30-30s13.5-30 30-30 30 13.5 30 30-13.5 30-30 30z"/>
+    <path d="M120 95h-40c-2.8 0-5 2.2-5 5s2.2 5 5 5h40c2.8 0 5-2.2 5-5s-2.2-5-5-5z"/>
+    <circle cx="85" cy="100" r="7"/>
+    <circle cx="115" cy="100" r="7"/>
+  </g>
+</svg>
