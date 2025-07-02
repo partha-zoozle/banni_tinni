@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:banni_tinni/core/theme/app_theme.dart';
-import 'package:banni_tinni/features/splash/presentation/pages/splash_screen.dart';
-import 'package:banni_tinni/features/home/presentation/pages/home_screen.dart';
-import 'package:banni_tinni/features/history/presentation/pages/history_screen.dart';
+import 'package:get/get.dart';
+import 'package:banni_tinni/app/routes/app_routes.dart';
+import 'package:banni_tinni/app/data/providers/link_provider.dart';
+import 'package:banni_tinni/app/data/providers/place_provider.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
+  // Initialize providers
+  Get.put(LinkProvider());
+  Get.put(PlaceProvider());
+
   runApp(const MyApp());
 }
 
@@ -14,16 +17,42 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Banni Tinni',
-      theme: AppTheme.lightTheme,
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const SplashScreen(),
-        '/home': (context) => const HomeScreen(),
-        '/history': (context) => const HistoryScreen(),
-      },
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+          brightness: Brightness.dark,
+        ),
+        useMaterial3: true,
+        scaffoldBackgroundColor: Colors.black,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
+        cardColor: const Color(0xFF1A1A1A),
+        cardTheme: const CardThemeData(
+          elevation: 8,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(16)),
+          ),
+        ),
+        textTheme: const TextTheme(
+          headlineLarge: TextStyle(
+            fontSize: 32,
+            fontWeight: FontWeight.w700,
+            letterSpacing: -0.5,
+          ),
+          headlineMedium: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+            letterSpacing: -0.3,
+          ),
+          bodyLarge: TextStyle(fontSize: 16, letterSpacing: 0.2),
+        ),
+      ),
+      initialRoute: AppRoutes.splash,
+      getPages: AppRoutes.pages,
     );
   }
 }
